@@ -112,6 +112,7 @@ def main():
                     print(f'{sub[1]} messages from @{sub[2]}', 'to', msg.from_)
 
 
+
         # Define the Keyboard Interrupt detector to stop the bot
         except KeyboardInterrupt:
             print('Bot stoped!')
@@ -119,6 +120,8 @@ def main():
         
 
         # Define an except to pass other error's to continue bot if get an error 
+        except Exception as error:
+            print(error)
         except:
             pass
         
