@@ -122,10 +122,10 @@ def main():
         
 
         # Define an except to pass other error's to continue bot if get an error 
-        except Exception as error:
-            print(error)
-        except:
-            pass
+        # except Exception as error:
+        #     print(error)
+        # except:
+        #     pass
         
         sleep(10)
 
