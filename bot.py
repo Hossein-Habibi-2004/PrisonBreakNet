@@ -6,6 +6,7 @@ from redbox.query import UNSEEN
 from redmail import EmailSender
 
 from os import remove
+from re import findall
 from time import sleep
 from textwrap import wrap
 from datetime import datetime
@@ -92,7 +93,7 @@ def main():
 
                         # Wraping the messages to better view
                         wrap_list = wrap(message.message, 50)
-                        wrap_text = ' |\n'.join(wrap_list)
+                        wrap_text = '\n'.join(wrap_list)
 
                         file.write(wrap_text)
 
@@ -112,6 +113,47 @@ def main():
                     remove(file_name)
                     
                     print(f'{sub[1]} messages from @{sub[2]}', 'to', msg.from_)
+                
+
+                elif sub[0] == 'mtproto':
+
+                    channels = ['hack_proxy', 'NetAccount']
+
+                    # Make a standard name for file by date and time of now
+                    now = str(datetime.now())[:16].replace(':','-').replace(' ','_')
+                    file_name = f'mtproxy_{now}_{counter}.txt'
+                    
+                    counter += 1
+
+                    # Open the file
+                    file = open(file_name, 'w')
+
+                    # Write proxies to file
+                    for channel in channels:
+                        for message in bot.iter_messages(channel, limit=30):
+                            proxies = findall(
+                                r'((https://t\.me/|tg://)proxy\?server=.+&port=[0-9]{0,5}&secret=[a-z0-9A-Z_]+)(\s|\n)?',
+                                message.message)
+
+                            for proxy in proxies:
+                                file.write(proxy)
+
+                                # Write a line between messages
+                                file.write('\n\n' + '-'*60 + '\n\n')
+
+                    # Close the file
+                    file.close()
+
+                    # Send the file of messages
+                    send('Mtproto porxies',
+                        receivers=[msg.from_],
+                        text = 'Here is the proxies: ',
+                        attachments=[file_name])
+                    
+                    # Remove the file
+                    remove(file_name)
+                    
+                    print('sent mtproto to', msg.from_)
 
 
 
