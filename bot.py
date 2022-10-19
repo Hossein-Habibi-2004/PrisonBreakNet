@@ -103,13 +103,13 @@ def main():
                     file.close()
 
                     # Send the file of messages
-                    send(msg.from_,
-                        f'{sub[1]} messages from @{sub[2]}',
-                        'Here is the file of messages: ',
-                        [file_name])
+                    send(f'{sub[1]} messages from @{sub[2]}',
+                        receivers=[msg.from_],
+                        text = 'Here is the file of messages: ',
+                        attachments=[file_name])
                     
                     # Remove the file
-                    #remove(file_name)
+                    remove(file_name)
                     
                     print(f'{sub[1]} messages from @{sub[2]}', 'to', msg.from_)
 
