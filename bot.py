@@ -60,7 +60,7 @@ def main():
     # Define a inifity loop to response email's
     while True:
         # Define a counter for use in file names
-        counter = 0
+        counter = 1
 
         # Define a try-except option for error's
         try:
@@ -81,6 +81,8 @@ def main():
                     # Make a standard name for file by date and time of now
                     now = str(datetime.now())[:16].replace(':','-').replace(' ','_')
                     file_name = f'{sub[2]}_{now}_{counter}.txt'
+                    
+                    counter += 1
 
                     # Open the file
                     file = open(file_name, 'w')
@@ -107,7 +109,7 @@ def main():
                         [file_name])
                     
                     # Remove the file
-                    remove(file_name)
+                    #remove(file_name)
                     
                     print(f'{sub[1]} messages from @{sub[2]}', 'to', msg.from_)
 
