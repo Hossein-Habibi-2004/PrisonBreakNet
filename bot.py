@@ -115,7 +115,7 @@ def main():
                     print(f'{sub[1]} messages from @{sub[2]}', 'to', msg.from_)
                 
 
-                elif sub[0] == 'mtproto':
+                elif sub[0] in ['mtproto', 'mtproxy']:
 
                     channels = ['hack_proxy', 'NetAccount']
 
@@ -136,7 +136,7 @@ def main():
                                 message.message)
 
                             for proxy in proxies:
-                                file.write(proxy)
+                                file.write(proxy[0])
 
                                 # Write a line between messages
                                 file.write('\n\n' + '-'*60 + '\n\n')
