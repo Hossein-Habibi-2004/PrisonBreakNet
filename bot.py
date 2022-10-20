@@ -260,12 +260,14 @@ def main():
                     drive = {
                         'injector': 'https://drive.google.com/file/d/1Wc5ocL4feKtN1oIIenU6SGxlFdImDddS',
                         'plugin'  : 'https://drive.google.com/file/d/1D4aJ8xSQfl45bvXEM5S3L5LEaOfX3Hlp',
-                        'custom'  : 'https://drive.google.com/file/d/1ir2qfJija1NxFBzubLikPd5BHBqg9GXS'}
+                        'custom'  : 'https://drive.google.com/file/d/1ir2qfJija1NxFBzubLikPd5BHBqg9GXS',
+                        'v2ray'   : 'https://drive.google.com/file/d/1Gj_jeOaAqwLDqtoQU_9DiXLY1gvucT06'}
                     
                     bayan = {
                         'injector': 'https://bayanbox.ir/download/6811170076719809389/HTTP-Injector-5.7.1-apkcombo.com',
                         'plugin'  : 'https://bayanbox.ir/download/4310901268947379443/V2Ray-plugin-for-HTTP-Injector-v1.5.1-apkpure.com.apk',
-                        'custom'  : 'https://bayanbox.ir/download/8623657524937065235/HTTP-Custom-AIO-Tunnel-VPN-v3.10.28-apkpure.com.apk'}
+                        'custom'  : 'https://bayanbox.ir/download/8623657524937065235/HTTP-Custom-AIO-Tunnel-VPN-v3.10.28-apkpure.com.apk',
+                        'v2ray'   : 'https://bayanbox.ir/download/2407425016960915312/v2rayNG-v1.7.4-apkpure.com'}
                     
                     if sub[1] in drive:
 
@@ -273,8 +275,8 @@ def main():
                         send(f'APK {sub[1]}',
                             receivers=[msg.from_],
                             html=f'<p>Dear <b>{msg.from_.split("<")[0]}</b>\nHere is the APK links:</p><p></p>\
-                                <p><b><a href="{drive["injector"]}">Download from Google Drive</a></b></p>\
-                                    <p><b><a href="{bayan["injector"]}">Download from Bayan Box</a></b></p>')
+                                <p><b><a href="{drive[sub[1]]}">Download from Google Drive</a></b></p>\
+                                    <p><b><a href="{bayan[sub[1]]}">Download from Bayan Box</a></b></p>')
                         
                         print(f'sent {sub[1]} to', msg.from_)
                 
