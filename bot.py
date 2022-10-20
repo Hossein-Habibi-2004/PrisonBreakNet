@@ -211,10 +211,10 @@ def main():
                 
 
                 # Define V2ray server sender
-                elif sub[0] in ['v2ray', 'vmess']:
+                elif sub[0] in ['v2ray', 'vmess', 'vless', 'trojan']:
                     print('Getting servers...')
 
-                    channels = ['v2rayng_org']
+                    channels = ['v2rayng_org', 'NetBox2']
 
                     # Make a standard name for file by date and time of now
                     now = str(datetime.now())[:16].replace(':','-').replace(' ','_')
@@ -229,7 +229,7 @@ def main():
                     # Write servers to file
                     for channel in channels:
                         for message in bot.iter_messages(channel, limit=30):
-                            servers = findall(r'(vmess://[a-z0-9A-Z=]+)(\s|\n)?',message.message)
+                            servers = findall(r'((vmess://|trojan://|vless://)[a-z0-9A-Z=%@#]+)(\s|\n)?',message.message)
 
                             for server in servers:
                                 file.write(server[0])
