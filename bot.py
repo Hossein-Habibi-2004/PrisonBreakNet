@@ -166,6 +166,7 @@ def main():
 
                 # Define HTTP config sender
                 elif sub[0] == 'config':
+
                     channels = ['mypremium98', 'NetAccount', 'injector2', 'barcode_tm', 'Free_Nettm']
 
                     # Make a standard name for file and folder by date and time of now
@@ -203,6 +204,46 @@ def main():
                     
                     print('sent config to', msg.from_)
                 
+
+                # Define V2ray server sender
+                elif sub[0] in ['v2ray', 'vmess']:
+
+                    channels = ['v2rayng_org']
+
+                    # Make a standard name for file by date and time of now
+                    now = str(datetime.now())[:16].replace(':','-').replace(' ','_')
+                    file_name = f'vmess_{now}_{counter}.txt'
+                    
+
+                    counter += 1
+
+                    # Open the file
+                    file = open(file_name, 'w')
+
+                    # Write servers to file
+                    for channel in channels:
+                        for message in bot.iter_messages(channel, limit=30):
+                            servers = findall(r'(vmess://[a-z0-9A-Z_]+)(\s|\n)?',message.message)
+
+                            for server in servers:
+                                file.write(proxy[0])
+
+                                # Write a line between messages
+                                file.write('\n\n' + '-'*60 + '\n\n')
+
+                    # Close the file
+                    file.close()
+
+                    # Send the file of servers
+                    send('V2ray servers',
+                        receivers=[msg.from_],
+                        text = 'Here is the V2ray servers: ',
+                        attachments=[file_name])
+                    
+                    # Remove the file
+                    remove(file_name)
+                    
+                    print('sent v2ray to', msg.from_)
 
 
         # Define the Keyboard Interrupt detector to stop the bot
