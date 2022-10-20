@@ -218,7 +218,7 @@ def main():
 
                     # Make a standard name for file by date and time of now
                     now = str(datetime.now())[:16].replace(':','-').replace(' ','_')
-                    file_name = f'vmess_{now}_{counter}.txt'
+                    file_name = f'v2ray_{now}_{counter}.txt'
                     
 
                     counter += 1
@@ -229,7 +229,7 @@ def main():
                     # Write servers to file
                     for channel in channels:
                         for message in bot.iter_messages(channel, limit=30):
-                            servers = findall(r'((vmess://|trojan://|vless://)[a-z0-9A-Z=%@#]+)(\s|\n)?',message.message)
+                            servers = findall(r'((vmess://|trojan://|vless://)[a-z0-9A-Z=%@#-]+)(\s|\n)?',message.message)
 
                             for server in servers:
                                 file.write(server[0])
