@@ -76,12 +76,13 @@ def main():
                 # Split subject to easy find command's
                 sub = msg.subject.lower().split(' ')
 
-                # Define the Ping-Pong option
-                if sub[0] == 'ping':
+                # Define the Ping-Pong option (owner only)
+                if sub[0] == 'ping' and msg.from_ == OWNER:
                     send('Pong!', receivers=[msg.from_], text="I'm alive!")
                     print('Pong => ', msg.from_)
-                
-                # Define option to get messages from a Telegram channel (Owner only)
+
+
+                # Define option to get messages from a Telegram channel (owner only)
                 elif sub[0] == 'get' and msg.from_ == OWNER:
                     # Make a standard name for file by date and time of now
                     now = str(datetime.now())[:16].replace(':','-').replace(' ','_')
@@ -119,6 +120,7 @@ def main():
                     print(f'{sub[1]} messages from @{sub[2]}', 'to', msg.from_)
                 
 
+                # Define Mtproto proxy sender
                 elif sub[0] in ['mtproto', 'mtproxy']:
 
                     channels = ['hack_proxy', 'NetAccount']
@@ -160,6 +162,7 @@ def main():
                     print('sent mtproto to', msg.from_)
                 
 
+                # Define HTTP config sender
                 elif sub[0] == 'config':
 
                     channels = ['mypremium98', 'NetAccount', 'injector2', 'barcode_tm', 'Free_Nettm']
@@ -181,9 +184,10 @@ def main():
 
                         for message in bot.iter_messages(channel, limit=20):
 
-                            if message.media is not None:
-                                bot_sync(message.download_media(
-                                    name+'/'+channel+'/'+message.file.name))
+                            if message.file is not None and message.file.name is not None:
+                                if message.file.name[-3:] in ['.hc', 'ehi']:
+                                    bot_sync(message.download_media(
+                                        name+'/'+channel+'/'+message.file.name))
                             
                     make_archive(f'{name}.zip', 'zip',name)
 
