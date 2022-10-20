@@ -226,7 +226,7 @@ def main():
                             servers = findall(r'(vmess://[a-z0-9A-Z_]+)(\s|\n)?',message.message)
 
                             for server in servers:
-                                file.write(proxy[0])
+                                file.write(server[0])
 
                                 # Write a line between messages
                                 file.write('\n\n' + '-'*60 + '\n\n')
