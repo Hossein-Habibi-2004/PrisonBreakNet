@@ -113,7 +113,7 @@ def main():
                     # Send the file of messages
                     send(f'{sub[1]} messages from @{sub[2]}',
                         receivers=[msg.from_],
-                        text = 'Here is the file of messages: ',
+                        text = 'Dear ' + msg.from_.split('<')[0] + 'Here is the file of messages: ',
                         attachments=[file_name])
                     
                     # Remove the file
@@ -155,7 +155,7 @@ def main():
                     # Send the file of proxies
                     send('Mtproto porxies',
                         receivers=[msg.from_],
-                        text = 'Here is the proxies: ',
+                        text = 'Dear ' + msg.from_.split('<')[0] + 'Here is the proxies: ',
                         attachments=[file_name])
                     
                     # Remove the file
@@ -196,7 +196,7 @@ def main():
                     # Send the file of configs
                     send('HTTP Config',
                         receivers=[msg.from_],
-                        text = 'Here is the configs: ',
+                        text = 'Dear ' + msg.from_.split('<')[0] + 'Here is the configs: ',
                         attachments=[f'{name}.zip'])
                     
                     # Remove the folder
@@ -237,13 +237,30 @@ def main():
                     # Send the file of servers
                     send('V2ray servers',
                         receivers=[msg.from_],
-                        text = 'Here is the V2ray servers: ',
+                        text = 'Dear ' + msg.from_.split('<')[0] + 'Here is the V2ray servers: ',
                         attachments=[file_name])
                     
                     # Remove the file
                     remove(file_name)
                     
                     print('sent v2ray to', msg.from_)
+
+
+                # Define APK sender
+                # elif sub[0] == 'apk':
+
+                #     if sub[1] not exist:
+
+                #         bot_sync(message.download_media('APKs'+message.file.name))
+
+                #     # Send the file of APK's
+                #     send(f'APK {sub[1]}',
+                #         receivers=[msg.from_],
+                #         text = 'Dear ' + msg.from_.split('<')[0] + '\nHere is the APK: ',
+                #         attachments=[''])
+                    
+                #     print(f'sent {sub[1]} to', msg.from_)
+                
 
 
         # Define the Keyboard Interrupt detector to stop the bot
