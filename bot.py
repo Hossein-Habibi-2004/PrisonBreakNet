@@ -189,7 +189,7 @@ def main():
                                     bot_sync(message.download_media(
                                         name+'/'+channel+'/'+message.file.name))
                             
-                    make_archive(f'{name}.zip', 'zip',name)
+                    make_archive(f'{name}', 'zip',name)
 
                     # Send the file of configs
                     send('HTTP Config',
