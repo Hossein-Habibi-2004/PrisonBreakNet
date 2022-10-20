@@ -11,6 +11,7 @@ from redmail import EmailSender
 from redbox.query import UNSEEN
 
 from telethon import TelegramClient
+from telethon.sessions import StringSession
 
 
 
@@ -20,6 +21,7 @@ PASSWORD = "kannvepuazlqazba"        # Bot email password
 
 API_ID = 1029913 # API_id
 API_HASH = 'c89b062fb1b8ef18bc24a1e0c893f2ec' # API_hash
+SESSION = '1BJWap1wBu0jAJFZnR_C-HSf2H_yXf-PzpEE48Hf3JLpq0X_E2EkSnb5GuqXQdTRASjGIy0QULhUaYi37_hXgG2vr2Fs9cVzhVsdlQyuWSvT3mxEP5D7Og5xA49xAeuND0QsTVHiQAMzYjlDp8wpy5a6USCIAqV88JgeF2KJ1spz5kkPOZWwKso0L0j3mjCE3v_vmKCP0HIn9hUteMg5PvrqC3y_091bwHyPnaLK4jPZZR4zA27ko6FsxwnePqhlwEZA4dHFisewrL0v8FCQRSxHt8D8EB1RCZgPCBPn_XDI_FOKlVvsIH1-vC8vY-bbSTts4Jxb2OZcAurT4M7FlPpoWF7EXXBY='
 OWNER = 'mmdchenar@gmail.com' # Owner email
 
 
@@ -39,7 +41,7 @@ sender = EmailSender(
 send = sender.send
 
 # Connect to Telegram
-bot = TelegramClient('client', API_ID, API_HASH).start()
+bot = TelegramClient(StringSession(SESSION), API_ID, API_HASH).start()
 
 # Bypass asynco client
 bot_sync = bot.loop.run_until_complete
