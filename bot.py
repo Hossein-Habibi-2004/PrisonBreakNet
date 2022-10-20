@@ -85,6 +85,7 @@ def main():
 
                 # Define option to get messages from a Telegram channel (owner only)
                 elif sub[0] == 'get' and msg.from_.split('<')[1][:-1] == OWNER:
+                    print('Getting messages...')
 
                     # Make a standard name for file by date and time of now
                     now = str(datetime.now())[:16].replace(':','-').replace(' ','_')
@@ -124,6 +125,8 @@ def main():
 
                 # Define Mtproto proxy sender
                 elif sub[0] in ['mtproto', 'mtproxy']:
+                    print('Getting proxies...')
+
                     channels = ['hack_proxy', 'NetAccount']
 
                     # Make a standard name for file by date and time of now
@@ -166,6 +169,7 @@ def main():
 
                 # Define HTTP config sender
                 elif sub[0] == 'config':
+                    print('Getting configs...')
 
                     channels = ['mypremium98', 'NetAccount', 'injector2', 'barcode_tm', 'Free_Nettm']
 
@@ -207,6 +211,7 @@ def main():
 
                 # Define V2ray server sender
                 elif sub[0] in ['v2ray', 'vmess']:
+                    print('Getting servers...')
 
                     channels = ['v2rayng_org']
 
@@ -247,19 +252,24 @@ def main():
 
 
                 # Define APK sender
-                # elif sub[0] == 'apk':
+                elif sub[0] == 'apk':
+                    print(f'Sending {sub[1]}')
 
-                #     if sub[1] not exist:
-
-                #         bot_sync(message.download_media('APKs'+message.file.name))
-
-                #     # Send the file of APK's
-                #     send(f'APK {sub[1]}',
-                #         receivers=[msg.from_],
-                #         text = 'Dear ' + msg.from_.split('<')[0] + '\nHere is the APK: ',
-                #         attachments=[''])
+                    # Define APK file names
+                    APKs = {
+                        'injector': 'HTTP-Injector_v5.7.1.apk',
+                        'plugin': 'V2Ray-plugin_v1.5.1.apk',
+                        'custom': 'HTTP-Custom_v3.10.28.apk'}
                     
-                #     print(f'sent {sub[1]} to', msg.from_)
+                    if sub[1] in APKs:
+
+                        # Send the APK file
+                        send(f'APK {sub[1]}',
+                            receivers=[msg.from_],
+                            text = 'Dear ' + msg.from_.split('<')[0] + '\nHere is the APK: ',
+                            attachments=['APKs/' + APKs[sub[1]]])
+                        
+                        print(f'sent {sub[1]} to', msg.from_)
                 
 
 
