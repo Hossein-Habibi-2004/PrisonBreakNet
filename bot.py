@@ -67,6 +67,7 @@ def main():
 
     # Define a inifity loop to response email's
     while True:
+        print('Ready to response...')
 
         # Define a try-except option for error's
         try:
@@ -257,9 +258,9 @@ def main():
 
                     # Define APK file names
                     APKs = {
-                        'injector': 'HTTP-Injector_v5.7.1.apk',
-                        'plugin': 'V2Ray-plugin_v1.5.1.apk',
-                        'custom': 'HTTP-Custom_v3.10.28.apk'}
+                        'injector': 'HTTP-Injector_v5.7.1.zip',
+                        'plugin': 'V2Ray-plugin_v1.5.1.zip',}
+                        # 'custom': 'HTTP-Custom_v3.10.28.apk'}
                     
                     if sub[1] in APKs:
 
