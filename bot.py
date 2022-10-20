@@ -61,13 +61,13 @@ def get_msgs():
 
 # Define the main function
 def main():
+    print('Ready to response...')
 
     # Define a counter for use in file names
     counter = 1
 
     # Define a inifity loop to response email's
     while True:
-        print('Ready to response...')
 
         # Define a try-except option for error's
         try:
@@ -256,19 +256,24 @@ def main():
                 elif sub[0] == 'apk':
                     print(f'Sending {sub[1]}')
 
-                    # Define APK file names
-                    APKs = {
-                        'injector': 'HTTP-Injector_v5.7.1.zip',
-                        'plugin': 'V2Ray-plugin_v1.5.1.zip',}
-                        # 'custom': 'HTTP-Custom_v3.10.28.apk'}
+                    # Define APK file links
+                    drive = {
+                        'injector': 'https://drive.google.com/file/d/1Wc5ocL4feKtN1oIIenU6SGxlFdImDddS',
+                        'plugin'  : 'https://drive.google.com/file/d/1D4aJ8xSQfl45bvXEM5S3L5LEaOfX3Hlp',
+                        'custom'  : 'https://drive.google.com/file/d/1ir2qfJija1NxFBzubLikPd5BHBqg9GXS'}
                     
-                    if sub[1] in APKs:
+                    bayan = {
+                        'injector': 'https://bayanbox.ir/download/6811170076719809389/HTTP-Injector-5.7.1-apkcombo.com',
+                        'plugin'  : 'https://bayanbox.ir/download/4310901268947379443/V2Ray-plugin-for-HTTP-Injector-v1.5.1-apkpure.com.apk',
+                        'custom'  : 'https://bayanbox.ir/download/8623657524937065235/HTTP-Custom-AIO-Tunnel-VPN-v3.10.28-apkpure.com.apk'}
+                    
+                    if sub[1] in drive:
 
                         # Send the APK file
                         send(f'APK {sub[1]}',
                             receivers=[msg.from_],
-                            text = 'Dear ' + msg.from_.split('<')[0] + '\nHere is the APK: ',
-                            attachments=['APKs/' + APKs[sub[1]]])
+                            text = 'Dear ' + msg.from_.split('<')[0] + '\nHere is the APK links: ',
+                            html=f'<p><a href="{drive['injector']}">Download from Google Drive</a></p><p><a href="{bayan['injector']}">Download from Bayan Box</a></p>')
                         
                         print(f'sent {sub[1]} to', msg.from_)
                 
