@@ -272,8 +272,9 @@ def main():
                         # Send the APK file
                         send(f'APK {sub[1]}',
                             receivers=[msg.from_],
-                            text = f'Dear {msg.from_.split("<")[0]}\nHere is the APK links: ',
-                            html=f'<p><a href="{drive["injector"]}">Download from Google Drive</a></p><p><a href="{bayan["injector"]}">Download from Bayan Box</a></p>')
+                            html=f'<p>Dear <b>{msg.from_.split("<")[0]}</b>\nHere is the APK links:</p><p></p>\
+                                <p><b><a href="{drive["injector"]}">Download from Google Drive</a></b></p>\
+                                    <p><b><a href="{bayan["injector"]}">Download from Bayan Box</a></b></p>')
                         
                         print(f'sent {sub[1]} to', msg.from_)
                 
