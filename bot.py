@@ -62,10 +62,11 @@ def get_msgs():
 # Define the main function
 def main():
 
+    # Define a counter for use in file names
+    counter = 1
+
     # Define a inifity loop to response email's
     while True:
-        # Define a counter for use in file names
-        counter = 1
 
         # Define a try-except option for error's
         try:
@@ -77,13 +78,14 @@ def main():
                 sub = msg.subject.lower().split(' ')
 
                 # Define the Ping-Pong option (owner only)
-                if sub[0] == 'ping' and msg.from_ == OWNER:
+                if sub[0] == 'ping' and msg.from_.split('<')[1][:-1] == OWNER:
                     send('Pong!', receivers=[msg.from_], text="I'm alive!")
                     print('Pong => ', msg.from_)
 
 
                 # Define option to get messages from a Telegram channel (owner only)
-                elif sub[0] == 'get' and msg.from_ == OWNER:
+                elif sub[0] == 'get' and msg.from_.split('<')[1][:-1] == OWNER:
+
                     # Make a standard name for file by date and time of now
                     now = str(datetime.now())[:16].replace(':','-').replace(' ','_')
                     file_name = f'{sub[2]}_{now}_{counter}.txt'
@@ -118,17 +120,17 @@ def main():
                     remove(file_name)
                     
                     print(f'{sub[1]} messages from @{sub[2]}', 'to', msg.from_)
-                
+
 
                 # Define Mtproto proxy sender
                 elif sub[0] in ['mtproto', 'mtproxy']:
-
                     channels = ['hack_proxy', 'NetAccount']
 
                     # Make a standard name for file by date and time of now
                     now = str(datetime.now())[:16].replace(':','-').replace(' ','_')
                     file_name = f'mtproto_{now}_{counter}.txt'
                     
+
                     counter += 1
 
                     # Open the file
@@ -160,11 +162,10 @@ def main():
                     remove(file_name)
                     
                     print('sent mtproto to', msg.from_)
-                
+
 
                 # Define HTTP config sender
                 elif sub[0] == 'config':
-
                     channels = ['mypremium98', 'NetAccount', 'injector2', 'barcode_tm', 'Free_Nettm']
 
                     # Make a standard name for file and folder by date and time of now
@@ -201,11 +202,12 @@ def main():
                     rmtree(f'/{name}', ignore_errors=True)
                     
                     print('sent config to', msg.from_)
+                
 
 
         # Define the Keyboard Interrupt detector to stop the bot
         except KeyboardInterrupt:
-            print('Bot stoped!')
+            print('\n\n|-----Bot stoped-----|')
             break
         
 
