@@ -223,7 +223,7 @@ def main():
                     # Write servers to file
                     for channel in channels:
                         for message in bot.iter_messages(channel, limit=30):
-                            servers = findall(r'(vmess://[a-z0-9A-Z_]+)(\s|\n)?',message.message)
+                            servers = findall(r'(vmess://[a-z0-9A-Z=]+)(\s|\n)?',message.message)
 
                             for server in servers:
                                 file.write(server[0])
