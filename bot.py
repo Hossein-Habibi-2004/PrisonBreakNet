@@ -1,4 +1,5 @@
 # Import Libraries
+from cgitb import html
 from re import findall
 from time import sleep
 from textwrap import wrap
@@ -78,13 +79,14 @@ def main():
                 # Split subject to easy find command's
                 sub = msg.subject.lower().split(' ')
 
-                # Define the Ping-Pong option (owner only)
-                if sub[0] == 'ping' and msg.from_.split('<')[1][:-1] == OWNER:
-                    send('Pong!', receivers=[msg.from_], text="I'm alive!")
-                    print('Pong => ', msg.from_)
+                # Define the help command
+                if sub[0] == 'help':
+                    help = open('help.html').read()
+                    send('Prison Break Tutorial', receivers=[msg.from_], html=help)
+                    print('Help => ', msg.from_)
 
 
-                # Define option to get messages from a Telegram channel (owner only)
+                # Define get messages command (owner only)
                 elif sub[0] == 'get' and msg.from_.split('<')[1][:-1] == OWNER:
                     print('Getting messages...')
 
@@ -124,7 +126,7 @@ def main():
                     print(f'{sub[1]} messages from @{sub[2]}', 'to', msg.from_)
 
 
-                # Define Mtproto proxy sender
+                # Define Mtproto proxy command
                 elif sub[0] in ['mtproto', 'mtproxy']:
                     print('Getting proxies...')
 
@@ -168,7 +170,7 @@ def main():
                     print('sent mtproto to', msg.from_)
 
 
-                # Define HTTP config sender
+                # Define HTTP config command
                 elif sub[0] == 'config':
                     print('Getting configs...')
 
@@ -210,7 +212,7 @@ def main():
                     print('sent config to', msg.from_)
                 
 
-                # Define V2ray server sender
+                # Define V2ray server command
                 elif sub[0] in ['v2ray', 'vmess', 'vless', 'trojan']:
                     print('Getting servers...')
 
@@ -229,7 +231,7 @@ def main():
                     # Write servers to file
                     for channel in channels:
                         for message in bot.iter_messages(channel, limit=30):
-                            servers = findall(r'((vmess://|trojan://|vless://)[a-z0-9A-Z=%@#-]+)(\s|\n)?',message.message)
+                            servers = findall(r'((vmess://|trojan://|vless://)[a-z0-9A-Z=%@#-\.]+)(\s|\n)?',message.message)
 
                             for server in servers:
                                 file.write(server[0])
@@ -252,7 +254,7 @@ def main():
                     print('sent v2ray to', msg.from_)
 
 
-                # Define APK sender
+                # Define APK link command
                 elif sub[0] == 'apk':
                     print(f'Sending {sub[1]}')
 
@@ -269,14 +271,19 @@ def main():
                         'custom'  : 'https://bayanbox.ir/download/8623657524937065235/HTTP-Custom-AIO-Tunnel-VPN-v3.10.28-apkpure.com.apk',
                         'v2ray'   : 'https://bayanbox.ir/download/2407425016960915312/v2rayNG-v1.7.4-apkpure.com'}
                     
-                    if sub[1] in drive:
+                    if sub[1] in drive and sub[1] != 'plugin':
+                        html = f'<p>Dear <b>{msg.from_.split("<")[0]}</b>\nHere is the APK links:</p><p></p>\
+                            <p><b><a href="{drive[sub[1]]}">Download from Google Drive</a></b></p>\
+                                <p><b><a href="{bayan[sub[1]]}">Download from Bayan Box</a></b></p>'
+
+                        if sub[1] == 'injector':
+                            html = html + f'<br><p><b><a href="{drive["plugin"]}">V2ray-Plugin Download from Google Drive</a></b></p>\
+                                <p><b><a href="{bayan["plugin"]}">V2ray-Plugin Download from Bayan Box</a></b></p></br>'
 
                         # Send the APK file
                         send(f'APK {sub[1]}',
                             receivers=[msg.from_],
-                            html=f'<p>Dear <b>{msg.from_.split("<")[0]}</b>\nHere is the APK links:</p><p></p>\
-                                <p><b><a href="{drive[sub[1]]}">Download from Google Drive</a></b></p>\
-                                    <p><b><a href="{bayan[sub[1]]}">Download from Bayan Box</a></b></p>')
+                            html=html)
                         
                         print(f'sent {sub[1]} to', msg.from_)
                 
