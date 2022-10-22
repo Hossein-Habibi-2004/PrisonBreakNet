@@ -3,8 +3,9 @@ from cgitb import html
 from re import findall
 from time import sleep
 from textwrap import wrap
-from os import remove, mkdir
 from datetime import datetime
+from dotenv import load_dotenv
+from os import remove, mkdir, getenv
 from shutil import make_archive, rmtree
 
 from redbox import EmailBox
@@ -16,14 +17,16 @@ from telethon.sessions import StringSession
 
 
 
-# Define Privates 
-USERNAME = "prison.b.net@gmail.com"  # Bot email address
-PASSWORD = "kannvepuazlqazba"        # Bot email password
+load_dotenv()
 
-API_ID = 1029913 # API_id
-API_HASH = 'c89b062fb1b8ef18bc24a1e0c893f2ec' # API_hash
-SESSION = '1BJWap1wBu0jAJFZnR_C-HSf2H_yXf-PzpEE48Hf3JLpq0X_E2EkSnb5GuqXQdTRASjGIy0QULhUaYi37_hXgG2vr2Fs9cVzhVsdlQyuWSvT3mxEP5D7Og5xA49xAeuND0QsTVHiQAMzYjlDp8wpy5a6USCIAqV88JgeF2KJ1spz5kkPOZWwKso0L0j3mjCE3v_vmKCP0HIn9hUteMg5PvrqC3y_091bwHyPnaLK4jPZZR4zA27ko6FsxwnePqhlwEZA4dHFisewrL0v8FCQRSxHt8D8EB1RCZgPCBPn_XDI_FOKlVvsIH1-vC8vY-bbSTts4Jxb2OZcAurT4M7FlPpoWF7EXXBY='
-OWNER = 'mmdchenar@gmail.com' # Owner email
+# Define Privates 
+USERNAME = getenv('EMAIL') # "prison.b.net@gmail.com"  # Bot email address
+PASSWORD = getenv('PASS') # "kannvepuazlqazba"        # Bot email password
+
+API_ID = getenv('API_ID') # 1029913 # API_id
+API_HASH = getenv('API_HASH') # 'c89b062fb1b8ef18bc24a1e0c893f2ec' # API_hash
+SESSION = getenv('SESSION') # '1BJWap1wBu0jAJFZnR_C-HSf2H_yXf-PzpEE48Hf3JLpq0X_E2EkSnb5GuqXQdTRASjGIy0QULhUaYi37_hXgG2vr2Fs9cVzhVsdlQyuWSvT3mxEP5D7Og5xA49xAeuND0QsTVHiQAMzYjlDp8wpy5a6USCIAqV88JgeF2KJ1spz5kkPOZWwKso0L0j3mjCE3v_vmKCP0HIn9hUteMg5PvrqC3y_091bwHyPnaLK4jPZZR4zA27ko6FsxwnePqhlwEZA4dHFisewrL0v8FCQRSxHt8D8EB1RCZgPCBPn_XDI_FOKlVvsIH1-vC8vY-bbSTts4Jxb2OZcAurT4M7FlPpoWF7EXXBY='
+OWNER = getenv('OWNER') # 'mmdchenar@gmail.com' # Owner email
 
 
 # Connect to Gmail
