@@ -20,13 +20,13 @@ from telethon.sessions import StringSession
 load_dotenv()
 
 # Define Privates 
-USERNAME = getenv('EMAIL') # "prison.b.net@gmail.com"  # Bot email address
-PASSWORD = getenv('PASS') # "kannvepuazlqazba"        # Bot email password
+USERNAME = getenv('EMAIL') # Bot email address
+PASSWORD = getenv('PASS') # Bot email password
 
-API_ID = getenv('API_ID') # 1029913 # API_id
-API_HASH = getenv('API_HASH') # 'c89b062fb1b8ef18bc24a1e0c893f2ec' # API_hash
-SESSION = getenv('SESSION') # '1BJWap1wBu0jAJFZnR_C-HSf2H_yXf-PzpEE48Hf3JLpq0X_E2EkSnb5GuqXQdTRASjGIy0QULhUaYi37_hXgG2vr2Fs9cVzhVsdlQyuWSvT3mxEP5D7Og5xA49xAeuND0QsTVHiQAMzYjlDp8wpy5a6USCIAqV88JgeF2KJ1spz5kkPOZWwKso0L0j3mjCE3v_vmKCP0HIn9hUteMg5PvrqC3y_091bwHyPnaLK4jPZZR4zA27ko6FsxwnePqhlwEZA4dHFisewrL0v8FCQRSxHt8D8EB1RCZgPCBPn_XDI_FOKlVvsIH1-vC8vY-bbSTts4Jxb2OZcAurT4M7FlPpoWF7EXXBY='
-OWNER = getenv('OWNER') # 'mmdchenar@gmail.com' # Owner email
+API_ID = getenv('API_ID') # API_id
+API_HASH = getenv('API_HASH') # API_hash
+SESSION = getenv('SESSION') # String Session 
+OWNER = getenv('OWNER') # Owner email
 
 
 # Connect to Gmail
