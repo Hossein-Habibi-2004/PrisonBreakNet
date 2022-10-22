@@ -2,3 +2,4 @@ redmail
 redbox
 telethon
 cryptg
+python-dotenv
