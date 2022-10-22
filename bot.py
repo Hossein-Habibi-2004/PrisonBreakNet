@@ -1,5 +1,4 @@
 # Import Libraries
-from cgitb import html
 from re import findall
 from time import sleep
 from textwrap import wrap
@@ -20,8 +19,8 @@ from telethon.sessions import StringSession
 load_dotenv()
 
 # Define Privates 
-USERNAME = getenv('EMAIL') # Bot email address
-PASSWORD = getenv('PASS') # Bot email password
+EMAIL = getenv('EMAIL') # Bot email address
+PASS = getenv('PASS') # Bot email password
 
 API_ID = getenv('API_ID') # API_id
 API_HASH = getenv('API_HASH') # API_hash
@@ -30,17 +29,17 @@ OWNER = getenv('OWNER') # Owner email
 
 
 # Connect to Gmail
-box = EmailBox(
+receiver = EmailBox(
     host="imap.gmail.com", 
     port=993,
-    username=USERNAME,
-    password=PASSWORD)
+    username=EMAIL,
+    password=PASS)
 
 sender = EmailSender(
     host="smtp.gmail.com", 
     port=587,
-    username=USERNAME,
-    password=PASSWORD)
+    username=EMAIL,
+    password=PASS)
 
 send = sender.send
 
@@ -53,7 +52,7 @@ bot_sync = bot.loop.run_until_complete
 
 # Define a function for read inbox and return the unread messages
 def get_msgs():
-    inbox = box["INBOX"] 
+    inbox = receiver["INBOX"] 
     msgs = []
 
     for msg in inbox.search(UNSEEN):
