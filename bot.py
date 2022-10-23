@@ -49,7 +49,11 @@ send_mail = EmailSender(
 
 # Define a function for read inbox and return the unread messages
 def get_msgs():
-    return [msg.read() for msg in mailbox.search(UNSEEN)]
+    msgs = []
+    for msg in mailbox.search(UNSEEN):
+        msg.read()
+        msgs.append(msg)
+    return msgs
 
 
 # ID Generator
@@ -73,15 +77,16 @@ if __name__ == '__main__':
             for msg in msgs:
                 sub = msg.subject.lower().split(' ') # Split subject to easy find command's
                 if sub[0] == 'help': # Define the help command
-                    send_mail(
-                        'Prison Break Tutorial', 
-                        receivers=[msg.from_], 
-                        html=join_path(MEDIA_DIR, 'templates', 'help.html'), 
-                        body_params={
-                            'email_address': EMAIL,
-                        }
-                    )
-                    print('Help => ', msg.from_)
+                    with open(join_path(MEDIA_DIR, 'templates', 'help.html'), 'r') as html_file:
+                        send_mail(
+                            'Prison Break Tutorial', 
+                            receivers=[msg.from_], 
+                            html=html_file.read(), 
+                            body_params={
+                                'email_address': EMAIL,
+                            }
+                        )
+                    print('Help ~> ', msg.from_)
                 elif sub[0] == 'get' and msg.from_.split('<')[1][:-1] == OWNER: # Define get messages command (owner only)
                     print('Getting messages...')
 
@@ -158,6 +163,7 @@ if __name__ == '__main__':
                         attachments=[f'{config_name}.zip']
                     )
 
+                    remove(join_path(BASE_DIR, f'{config_name}.zip'))
                     rmtree(join_path(BASE_DIR, config_name), ignore_errors=True) # Remove the folder
                     print('sent config to', msg.from_)
                 elif sub[0] in ['v2ray', 'vmess', 'vless', 'trojan']: # Define V2ray server command
