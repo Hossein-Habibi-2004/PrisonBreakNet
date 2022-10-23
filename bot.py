@@ -268,10 +268,10 @@ def main():
                         'v2ray'   : 'https://drive.google.com/file/d/1Gj_jeOaAqwLDqtoQU_9DiXLY1gvucT06'}
                     
                     bayan = {
-                        'injector': 'https://bayanbox.ir/download/6811170076719809389/HTTP-Injector-5.7.1-apkcombo.com',
-                        'plugin'  : 'https://bayanbox.ir/download/4310901268947379443/V2Ray-plugin-for-HTTP-Injector-v1.5.1-apkpure.com.apk',
-                        'custom'  : 'https://bayanbox.ir/download/8623657524937065235/HTTP-Custom-AIO-Tunnel-VPN-v3.10.28-apkpure.com.apk',
-                        'v2ray'   : 'https://bayanbox.ir/download/2407425016960915312/v2rayNG-v1.7.4-apkpure.com'}
+                        'injector': 'https://bayanbox.ir/download/2423418780594137086/HTTP-Injector-5.7.1.apk',
+                        'plugin'  : 'https://bayanbox.ir/download/4779056004617586889/V2Ray-plugin-v1.5.1.apk',
+                        'custom'  : 'https://bayanbox.ir/download/6627542560266652761/HTTP-Custom-v3.10.28.apk',
+                        'v2ray'   : 'https://bayanbox.ir/download/2026735872615532411/v2rayNG-v1.7.20.apk'}
                     
                     if sub[1] in drive and sub[1] != 'plugin':
                         html = f'<p>Dear <b>{msg.from_.split("<")[0]}</b>\nHere is the APK links:</p><p></p>\
