@@ -88,8 +88,6 @@ if __name__ == '__main__':
                         )
                     print('Help ~> ', msg.from_)
                 elif sub[0] == 'get' and msg.from_.split('<')[1][:-1] == OWNER: # Define get messages command (owner only)
-                    print('Getting messages...')
-
                     file_name = join_path(BASE_DIR, f'{sub[2]}_{id_generator()}.txt')
                     with open(file_name, 'w') as _f:
                         for message in bot.iter_messages(sub[2], limit=int(sub[1])):
@@ -107,8 +105,6 @@ if __name__ == '__main__':
                     remove(file_name) # Remove the file
                     print(f'{sub[1]} messages from @{sub[2]}', 'to', msg.from_)
                 elif sub[0] in ['mtproto', 'mtproxy']: # Define Mtproto proxy command
-                    print('Getting proxies...')
-
                     channels = ['hack_proxy', 'NetAccount']
 
                     file_name = join_path(BASE_DIR, f'mtproto_{id_generator()}.txt')
@@ -135,8 +131,6 @@ if __name__ == '__main__':
                     remove(file_name) # Remove the file
                     print('sent mtproto to', msg.from_)
                 elif sub[0] == 'config': # Define HTTP config command
-                    print('Getting configs...')
-
                     channels = ['mypremium98', 'NetAccount', 'injector2', 'barcode_tm', 'Free_Nettm']
 
                     config_name = f'config_{id_generator()}'
@@ -167,8 +161,6 @@ if __name__ == '__main__':
                     rmtree(join_path(BASE_DIR, config_name), ignore_errors=True) # Remove the folder
                     print('sent config to', msg.from_)
                 elif sub[0] in ['v2ray', 'vmess', 'vless', 'trojan']: # Define V2ray server command
-                    print('Getting servers...')
-
                     channels = ['v2rayng_org', 'NetBox2', 'freelancer_gray']
 
                     file_name = join_path(BASE_DIR, f'v2ray_{id_generator()}.txt')
@@ -196,9 +188,6 @@ if __name__ == '__main__':
                     remove(file_name)
                     print('sent v2ray to', msg.from_)
                 elif sub[0] == 'apk': # Define APK link command
-                    print(f'Sending {sub[1]}')
-
-                    # Define APK file links
                     drive = {
                         'injector': 'https://drive.google.com/file/d/1Wc5ocL4feKtN1oIIenU6SGxlFdImDddS',
                         'plugin': 'https://drive.google.com/file/d/1D4aJ8xSQfl45bvXEM5S3L5LEaOfX3Hlp',
