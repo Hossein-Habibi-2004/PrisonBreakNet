@@ -262,16 +262,22 @@ def main():
 
                     # Define APK file links
                     drive = {
-                        'injector': 'https://drive.google.com/file/d/1Wc5ocL4feKtN1oIIenU6SGxlFdImDddS',
-                        'plugin'  : 'https://drive.google.com/file/d/1D4aJ8xSQfl45bvXEM5S3L5LEaOfX3Hlp',
-                        'custom'  : 'https://drive.google.com/file/d/1ir2qfJija1NxFBzubLikPd5BHBqg9GXS',
-                        'v2ray'   : 'https://drive.google.com/file/d/1Gj_jeOaAqwLDqtoQU_9DiXLY1gvucT06'}
+                        'injector' : 'https://drive.google.com/file/d/1Wc5ocL4feKtN1oIIenU6SGxlFdImDddS',
+                        'plugin'   : 'https://drive.google.com/file/d/1D4aJ8xSQfl45bvXEM5S3L5LEaOfX3Hlp',
+                        'custom'   : 'https://drive.google.com/file/d/1ir2qfJija1NxFBzubLikPd5BHBqg9GXS',
+                        'v2ray'    : 'https://drive.google.com/file/d/1Gj_jeOaAqwLDqtoQU_9DiXLY1gvucT06',
+                        'every'    : 'https://drive.google.com/file/d/1JVzCw0hNHb259T14xPA7xOuOXlQT7bCQ',
+                        'sstp'     : 'https://drive.google.com/file/d/11Pd9VYYQjdKnS3nYXZaUqcvV7y6Z1xuF',
+                        'ultrasurf': 'https://drive.google.com/file/d/1UY_aF7N8hTNVxiv3Af5sIMmP6wilf6qe'}
                     
                     bayan = {
-                        'injector': 'https://bayanbox.ir/download/2423418780594137086/HTTP-Injector-5.7.1.apk',
-                        'plugin'  : 'https://bayanbox.ir/download/4779056004617586889/V2Ray-plugin-v1.5.1.apk',
-                        'custom'  : 'https://bayanbox.ir/download/6627542560266652761/HTTP-Custom-v3.10.28.apk',
-                        'v2ray'   : 'https://bayanbox.ir/download/2026735872615532411/v2rayNG-v1.7.20.apk'}
+                        'injector' : 'https://bayanbox.ir/download/2423418780594137086/HTTP-Injector-5.7.1.apk',
+                        'plugin'   : 'https://bayanbox.ir/download/4779056004617586889/V2Ray-plugin-v1.5.1.apk',
+                        'custom'   : 'https://bayanbox.ir/download/6627542560266652761/HTTP-Custom-v3.10.28.apk',
+                        'v2ray'    : 'https://bayanbox.ir/download/2026735872615532411/v2rayNG-v1.7.20.apk',
+                        'every'    : 'https://bayanbox.ir/download/5857325977849443639/Every-Proxy-9.2.apk',
+                        'sstp'     : 'https://bayanbox.ir/download/4488497287460583704/Open-SSTP-v1.5.7.1.apk',
+                        'ultrasurf': 'https://bayanbox.ir/download/9064590006485030472/Ultrasurf-v2.3.0.apk'}
                     
                     if sub[1] in drive and sub[1] != 'plugin':
                         html = f'<p>Dear <b>{msg.from_.split("<")[0]}</b>\nHere is the APK links:</p><p></p>\
